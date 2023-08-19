@@ -3,6 +3,8 @@ package com.dev.productservice.service;
 import com.dev.productservice.dto.ProductRequest;
 import com.dev.productservice.entity.Product;
 
+import java.util.List;
+
 public interface ProductService {
     Product createProduct(ProductRequest productRequest);
 
@@ -13,4 +15,6 @@ public interface ProductService {
     void updateProductInfo(ProductRequest productRequest);
 
     void deleteProduct(Long prodId);
+
+    List<Product> getAllProducts();
 }
