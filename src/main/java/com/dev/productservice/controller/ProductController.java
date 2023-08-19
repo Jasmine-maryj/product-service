@@ -1,6 +1,7 @@
 package com.dev.productservice.controller;
 
 import com.dev.productservice.dto.ProductRequest;
+import com.dev.productservice.dto.ProductResponse;
 import com.dev.productservice.entity.Product;
 import com.dev.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,25 +19,25 @@ public class ProductController {
 
     @PostMapping("/create")
     public ResponseEntity<String> createProduct(@RequestBody ProductRequest productRequest){
-        Product product = productService.createProduct(productRequest);
+        productService.createProduct(productRequest);
         return new ResponseEntity<>("Product Created", HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@RequestParam("id") Long prodId) throws Exception {
-        Product product = productService.getProductById(prodId);
+    public ResponseEntity<ProductResponse> getProductById(@RequestParam("id") Long prodId) throws Exception {
+        ProductResponse product = productService.getProductById(prodId);
         return ResponseEntity.ok(product);
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<Product> getProductByName(@RequestParam("name") String prodName){
-        Product product = productService.getProductByName(prodName);
+    public ResponseEntity<ProductResponse> getProductByName(@RequestParam("name") String prodName){
+        ProductResponse product = productService.getProductByName(prodName);
         return ResponseEntity.ok(product);
     }
 
     @GetMapping("/allProducts")
-    public ResponseEntity<List<Product>> getAllProducts(){
-        List<Product> productList = productService.getAllProducts();
+    public ResponseEntity<List<ProductResponse>> getAllProducts(){
+        List<ProductResponse> productList = productService.getAllProducts();
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
     @PutMapping("/update")
